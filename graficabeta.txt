@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# --- Datos de Ejemplo (¡REEMPLAZA ESTOS VALORES CON TUS DATOS REALES!) ---
+
+# Gráfica 1: Voltaje VCC vs. Corriente (en µA)
+VCC_G1 = np.array([7.803, 7.203, 6.991, 6.88])  # Voltaje VCC (eje X)
+Corriente_uA = np.array([50, 100, 150, 200]) # Corriente en Microamperios (µA) (eje Y)
+
+# Gráfica 2: Voltaje CE vs. Voltaje CC
+VCE_G2 = np.array([1.288, 1.344, 1.364, 1.374])    # Voltaje CE (eje X)
+VCC_G2 = np.array([50, 100, 150, 200])  # Voltaje CC (eje Y)
+
+
+# --- Creación de la Figura y los Ejes (2 subgráficas en 1 columna) ---
+# figsize=(ancho, alto) en pulgadas
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 8)) 
+fig.suptitle('Análisis de Voltajes y Corrientes', fontsize=16, fontweight='bold')
+
+# -----------------------------------------------------------
+# 1. Gráfica de Voltaje VCC vs. Corriente (µA) (Gráfica superior: ax1)
+# -----------------------------------------------------------
+ax1.plot(VCC_G1, Corriente_uA, marker='o', linestyle='-', color='indigo') 
+ax1.set_title('Voltaje CE vs. Beta', fontsize=14)
+ax1.set_xlabel('Voltaje (V)', fontsize=12) # Se usa LaTeX para el subíndice
+ax1.set_ylabel('Beta', fontsize=12) # Se usa LaTeX para el símbolo micro
+ax1.grid(True, linestyle='--', alpha=0.7) 
+ax1.tick_params(axis='both', which='major', labelsize=10)
+
+
+# -----------------------------------------------------------
+# 2. Gráfica de Voltaje CE vs. Voltaje CC (Gráfica inferior: ax2)
+# -----------------------------------------------------------
+ax2.plot(VCE_G2, VCC_G2, marker='^', linestyle='-', color='darkgreen')
+ax2.set_title('Corriente vs. Beta', fontsize=14)
+ax2.set_xlabel('Corriente (mA)', fontsize=12) 
+ax2.set_ylabel('Beta', fontsize=12)
+ax2.grid(True, linestyle='--', alpha=0.7)
+ax2.tick_params(axis='both', which='major', labelsize=10)
+
+
+# Ajustar el espacio entre las subgráficas
+plt.tight_layout(rect=[0, 0.03, 1, 0.95]) # Ajusta el título principal para que no se superponga
+
+# Mostrar la figura completa con ambas gráficas
+plt.show()
